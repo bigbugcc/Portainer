@@ -1,0 +1,6 @@
+{
+  "projectId": "cgz5j5",
+  "baseUrl": "https://localhost:9443",
+  "video": false,
+  "experimentalNetworkStubbing": true
+}

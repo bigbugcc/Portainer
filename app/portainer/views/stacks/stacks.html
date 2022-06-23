@@ -1,0 +1,24 @@
+<rd-header>
+  <rd-header-title title-text="Stacks list">
+    <a data-toggle="tooltip" title="Refresh" ui-sref="docker.stacks" ui-sref-opts="{reload: true}">
+      <i class="fa fa-sync" aria-hidden="true"></i>
+    </a>
+  </rd-header-title>
+  <rd-header-content>Stacks</rd-header-content>
+</rd-header>
+<information-panel-offline ng-if="offlineMode"></information-panel-offline>
+<div class="row">
+  <div class="col-sm-12">
+    <stacks-datatable
+      title-text="Stacks"
+      title-icon="fa-th-list"
+      dataset="stacks"
+      table-key="stacks"
+      order-by="Name"
+      remove-action="removeAction"
+      offline-mode="offlineMode"
+      refresh-callback="getStacks"
+      create-enabled="createEnabled"
+    ></stacks-datatable>
+  </div>
+</div>

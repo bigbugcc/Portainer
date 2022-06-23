@@ -1,0 +1,232 @@
+<div class="page-wrapper">
+  <!-- simple box -->
+  <div class="container simple-box">
+    <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+      <!-- simple box logo -->
+      <div class="row">
+        <img ng-if="logo" ng-src="{{ logo }}" class="simple-box-logo" />
+        <img ng-if="!logo" src="~@/assets/images/logo_alt.svg" class="simple-box-logo" alt="Portainer" />
+      </div>
+      <!-- !simple box logo -->
+      <!-- init password panel -->
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <!-- toggle -->
+          <div style="padding-bottom: 12px">
+            <a ng-click="togglePanel()">
+              <i ng-class="{ true: 'glyphicon glyphicon-chevron-down', false: 'glyphicon glyphicon-chevron-right' }[state.showInitPassword]" aria-hidden="true"></i
+              ><span style="padding-left: 10px">New Portainer installation</span>
+            </a>
+          </div>
+          <!-- !toggle -->
+
+          <!-- init password form -->
+          <form class="simple-box-form form-horizontal" style="padding-left: 30px" ng-if="state.showInitPassword">
+            <!-- note -->
+            <div class="form-group">
+              <div class="col-sm-12">
+                <span class="small text-muted"> Please create the initial administrator user. </span>
+              </div>
+            </div>
+            <!-- !note -->
+            <!-- username-input -->
+            <div class="form-group">
+              <label for="username" class="col-sm-4 control-label text-left"> Username </label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" id="username" ng-model="formValues.Username" placeholder="e.g. admin" />
+              </div>
+            </div>
+            <!-- !username-input -->
+            <!-- new-password-input -->
+            <div class="form-group">
+              <label for="password" class="col-sm-4 control-label text-left">Password</label>
+              <div class="col-sm-8">
+                <input type="password" class="form-control" ng-model="formValues.Password" id="password" ng-change="onPasswordChange()" auto-focus />
+              </div>
+            </div>
+            <!-- !new-password-input -->
+            <!-- confirm-password-input -->
+            <div class="form-group">
+              <label for="confirm_password" class="col-sm-4 control-label text-left">Confirm password</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input type="password" class="form-control" ng-model="formValues.ConfirmPassword" id="confirm_password" />
+                  <span class="input-group-addon"
+                    ><i
+                      ng-class="{ true: 'fa fa-check green-icon', false: 'fa fa-times red-icon' }[formValues.Password !== '' && formValues.Password === formValues.ConfirmPassword]"
+                      aria-hidden="true"
+                    ></i
+                  ></span>
+                </div>
+              </div>
+            </div>
+            <!-- !confirm-password-input -->
+            <!-- note -->
+            <div class="form-group">
+              <div class="col-sm-12 text-muted" ng-if="!state.passwordStrength">
+                <!-- below code is duplicated with component of <force-password-update-hint>  -->
+                <!-- it is a workaround for firefox that does not render component <force-password-update-hint>  -->
+                <p>
+                  <i class="fa fa-times red-icon space-right" aria-hidden="true"></i>
+                  <span>The password must be at least {{ MinPasswordLen }} characters long.</span>
+                </p>
+              </div>
+            </div>
+            <!-- !note -->
+            <!-- actions -->
+            <div class="form-group">
+              <div class="col-sm-12">
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-sm"
+                  ng-disabled="state.actionInProgress || !state.passwordStrength || formValues.Password !== formValues.ConfirmPassword"
+                  ng-click="createAdminUser()"
+                  button-spinner="state.actionInProgress"
+                >
+                  <span ng-hide="state.actionInProgress"><i class="fa fa-user-plus" aria-hidden="true"></i> Create user</span>
+                  <span ng-show="state.actionInProgress">Creating user...</span>
+                </button>
+              </div>
+            </div>
+            <!-- !actions -->
+            <!-- enableTelemetry-->
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input type="checkbox" name="toggle_enableTelemetry" ng-model="formValues.enableTelemetry" />
+                <span class="text-muted small" style="margin-left: 2px"
+                  >Allow collection of anonymous statistics. You can find more information about this in our
+                  <a href="https://www.portainer.io/documentation/in-app-analytics-and-privacy-policy/" target="_blank">privacy policy</a>.</span
+                >
+              </div>
+            </div>
+            <!-- !enableTelemetry-->
+          </form>
+          <!-- !init password form -->
+        </div>
+      </div>
+      <!-- !init password panel -->
+
+      <!-- restore backup panel -->
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <!-- toggle -->
+          <div style="padding-bottom: 12px">
+            <a ng-click="togglePanel()" data-cy="init-installPortainerFromBackup">
+              <i ng-class="{ true: 'glyphicon glyphicon-chevron-down', false: 'glyphicon glyphicon-chevron-right' }[state.showRestorePortainer]" aria-hidden="true"></i
+              ><span style="padding-left: 10px">Restore Portainer from backup</span>
+            </a>
+          </div>
+          <!-- !toggle -->
+
+          <!-- restore form -->
+          <form class="simple-box-form form-horizontal" style="padding-left: 30px" ng-if="state.showRestorePortainer">
+            <!-- note -->
+            <div class="form-group">
+              <div class="col-sm-9">
+                <span class="small text-muted">
+                  This will restore the Portainer metadata which contains information about the environments, stacks and applications, as well as the configured users.
+                </span>
+              </div>
+            </div>
+            <!-- !note -->
+            <div class="form-group">
+              <div class="boxselector_wrapper">
+                <div>
+                  <input type="radio" id="restore_file" checked="checked" />
+                  <label for="restore_file" style="padding-bottom: 20px" data-cy="init-selectLocalFile">
+                    <div class="boxselector_header">
+                      <i class="fa fa-upload" aria-hidden="true" style="margin-right: 2px"></i>
+                      Upload backup file
+                    </div>
+                    <p></p>
+                  </label>
+                </div>
+                <div>
+                  <input type="radio" id="restore_s3" disabled />
+                  <label for="restore_s3" class="boxselector_disabled" style="background-color: #ffffff">
+                    <div class="boxselector_header">
+                      <i class="fa fa-download" aria-hidden="true" style="margin-right: 2px"></i>
+                      Retrieve from S3
+                    </div>
+                    <p>This feature is available in <a href="https://www.portainer.io/business-upsell?from=restore-s3-form" target="_blank"> Portainer Business Edition</a></p>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <!-- note -->
+            <div class="form-group">
+              <div class="col-sm-12">
+                <span class="small text-muted"> You can upload a backup file from your computer. </span>
+              </div>
+            </div>
+            <!-- !note -->
+            <!-- select-file-input -->
+            <div class="form-group">
+              <div class="col-sm-12">
+                <button
+                  class="btn btn-sm btn-primary"
+                  ngf-select
+                  accept=".gz,.encrypted"
+                  ngf-accept="'application/x-tar,application/x-gzip'"
+                  ng-model="formValues.BackupFile"
+                  auto-focus
+                  data-cy="init-selectBackupFileButton"
+                  >Select file</button
+                >
+                <span style="margin-left: 5px">
+                  {{ formValues.BackupFile.name }}
+                  <i class="fa fa-times red-icon" ng-if="!formValues.BackupFile" aria-hidden="true"></i>
+                </span>
+              </div>
+            </div>
+            <!-- !select-file-input -->
+            <!-- password-input -->
+            <div class="form-group">
+              <label for="password" class="col-sm-3 control-label text-left">
+                Password
+                <portainer-tooltip
+                  position="bottom"
+                  message="If the backup is password protected, provide the password in order to extract the backup file, otherwise this field can be left empty."
+                ></portainer-tooltip>
+              </label>
+              <div class="col-sm-4">
+                <input type="password" class="form-control" ng-model="formValues.Password" id="password" data-cy="init-backupPasswordInput" />
+              </div>
+            </div>
+            <!-- !password-input -->
+            <!-- note -->
+            <div class="form-group">
+              <div class="col-sm-12">
+                <span class="small text-muted"> You are about to restore Portainer from this backup. </span>
+              </div>
+              <div class="col-sm-12">
+                <span class="small text-muted"> After restoring has completed, please log in as a user that was known by the Portainer that was restored. </span>
+              </div>
+            </div>
+            <!-- !note -->
+            <!-- actions -->
+            <div class="form-group">
+              <div class="col-sm-12">
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-sm"
+                  ng-disabled="!formValues.BackupFile || state.backupInProgress"
+                  ng-click="uploadBackup()"
+                  button-spinner="state.backupInProgress"
+                  data-cy="init-restorePortainerButton"
+                >
+                  <span ng-hide="state.backupInProgress">Restore Portainer</span>
+                  <span ng-show="state.backupInProgress">Restoring Portainer...</span>
+                </button>
+              </div>
+            </div>
+            <!-- !actions -->
+          </form>
+          <!-- !restore backup form -->
+        </div>
+      </div>
+      <!-- !restore backup panel -->
+    </div>
+  </div>
+  <!-- !simple box -->
+</div>

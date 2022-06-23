@@ -1,0 +1,131 @@
+<rd-header>
+  <rd-header-title title-text="Create Custom template"></rd-header-title>
+  <rd-header-content> <a ui-sref="docker.templates.custom">Custom Templates</a> &gt; Create Custom template </rd-header-content>
+</rd-header>
+
+<div class="row" ng-if="!$ctrl.state.loading">
+  <div class="col-sm-12">
+    <rd-widget>
+      <rd-widget-body>
+        <form class="form-horizontal" name="customTemplateForm">
+          <custom-template-common-fields
+            form-values="$ctrl.formValues"
+            show-platform-field="true"
+            show-type-field="true"
+            name-regex="$ctrl.state.templateNameRegex"
+          ></custom-template-common-fields>
+
+          <!-- build-method -->
+          <div ng-if="!$ctrl.state.fromStack">
+            <div class="col-sm-12 form-section-title"> Build method </div>
+            <div class="form-group"></div>
+            <div class="form-group" style="margin-bottom: 0">
+              <div class="boxselector_wrapper">
+                <div>
+                  <input type="radio" id="method_editor" ng-model="$ctrl.state.Method" value="editor" ng-change="$ctrl.onChangeMethod()" />
+                  <label for="method_editor">
+                    <div class="boxselector_header">
+                      <i class="fa fa-edit" aria-hidden="true" style="margin-right: 2px"></i>
+                      Web editor
+                    </div>
+                    <p>Use our Web editor</p>
+                  </label>
+                </div>
+                <div>
+                  <input type="radio" id="method_upload" ng-model="$ctrl.state.Method" value="upload" ng-change="$ctrl.onChangeMethod()" />
+                  <label for="method_upload">
+                    <div class="boxselector_header">
+                      <i class="fa fa-upload" aria-hidden="true" style="margin-right: 2px"></i>
+                      Upload
+                    </div>
+                    <p>Upload from your computer</p>
+                  </label>
+                </div>
+                <div>
+                  <input type="radio" id="method_repository" ng-model="$ctrl.state.Method" value="repository" ng-change="$ctrl.onChangeMethod()" />
+                  <label for="method_repository">
+                    <div class="boxselector_header">
+                      <i class="fab fa-git" aria-hidden="true" style="margin-right: 2px"></i>
+                      Repository
+                    </div>
+                    <p>Use a git repository</p>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- !build-method -->
+          <!-- web-editor -->
+          <div ng-show="$ctrl.state.Method === 'editor'">
+            <div class="col-sm-12 form-section-title"> Web editor </div>
+            <div class="form-group">
+              <span class="col-sm-12 text-muted small">
+                You can get more information about Compose file format in the
+                <a href="https://docs.docker.com/compose/compose-file/" target="_blank"> official documentation </a>
+                .
+              </span>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <code-editor
+                  identifier="custom-template-creation-editor"
+                  placeholder="# Define or paste the content of your docker-compose file here"
+                  yml="true"
+                  value="$ctrl.formValues.FileContent"
+                  on-change="($ctrl.editorUpdate)"
+                ></code-editor>
+              </div>
+            </div>
+          </div>
+          <!-- !web-editor -->
+          <!-- upload -->
+          <div ng-show="$ctrl.state.Method === 'upload'">
+            <div class="col-sm-12 form-section-title"> Upload </div>
+            <div class="form-group">
+              <span class="col-sm-12 text-muted small"> You can upload a Compose file from your computer. </span>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <button type="button" class="btn btn-sm btn-primary" ngf-select ng-model="$ctrl.formValues.File"> Select file </button>
+                <span style="margin-left: 5px">
+                  {{ $ctrl.formValues.File.name }}
+                  <i class="fa fa-times red-icon" ng-if="!$ctrl.formValues.File" aria-hidden="true"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+          <!-- !upload -->
+          <!-- repository -->
+          <git-form ng-if="$ctrl.state.Method === 'repository'" model="$ctrl.formValues" on-change="($ctrl.onChangeFormValues)"></git-form>
+          <!-- !repository -->
+          <por-access-control-form form-data="$ctrl.formValues.AccessControlData"></por-access-control-form>
+
+          <!-- actions -->
+          <div class="col-sm-12 form-section-title"> Actions </div>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <button
+                type="button"
+                class="btn btn-primary btn-sm"
+                ng-disabled="$ctrl.state.actionInProgress || customTemplateForm.$invalid
+              || ($ctrl.state.Method === 'editor' && !$ctrl.formValues.FileContent)
+              || ($ctrl.state.Method === 'upload' && !$ctrl.formValues.File)
+              || ($ctrl.state.Method === 'repository' && ((!$ctrl.formValues.RepositoryURL || !$ctrl.formValues.ComposeFilePathInRepository) || ($ctrl.formValues.RepositoryAuthentication && (!$ctrl.formValues.RepositoryUsername || !$ctrl.formValues.RepositoryPassword))))
+              || !$ctrl.formValues.Title"
+                ng-click="$ctrl.createCustomTemplate()"
+                button-spinner="$ctrl.state.actionInProgress"
+              >
+                <span ng-hide="$ctrl.state.actionInProgress">Create custom template</span>
+                <span ng-show="$ctrl.state.actionInProgress">Creation in progress...</span>
+              </button>
+              <span class="text-danger" ng-if="$ctrl.state.formValidationError" style="margin-left: 5px">
+                {{ $ctrl.state.formValidationError }}
+              </span>
+            </div>
+          </div>
+          <!-- !actions -->
+        </form>
+      </rd-widget-body>
+    </rd-widget>
+  </div>
+</div>

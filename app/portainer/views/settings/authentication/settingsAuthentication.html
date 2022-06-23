@@ -1,0 +1,69 @@
+<rd-header>
+  <rd-header-title title-text="Authentication settings"></rd-header-title>
+  <rd-header-content> <a ui-sref="portainer.settings">Settings</a> &gt; Authentication </rd-header-content>
+</rd-header>
+
+<div class="row">
+  <div class="col-sm-12">
+    <rd-widget>
+      <rd-widget-header icon="fa-users" title-text="Authentication"></rd-widget-header>
+      <rd-widget-body>
+        <form class="form-horizontal" name="authSettingsForm">
+          <div class="col-sm-12 form-section-title"> Configuration </div>
+          <div class="form-group">
+            <label for="user_timeout" class="col-sm-2 control-label text-left">
+              Session lifetime
+              <portainer-tooltip message="Time before users are forced to relogin."></portainer-tooltip>
+            </label>
+            <div class="col-sm-10">
+              <select
+                id="user_timeout"
+                class="form-control"
+                ng-model="settings.UserSessionTimeout"
+                ng-options="opt.value as opt.key for opt in state.availableUserSessionTimeoutOptions"
+              ></select>
+            </div>
+          </div>
+          <div class="form-group">
+            <span class="col-sm-12 text-muted small"> Changing from default is only recommended if you have additional layers of authentication in front of Portainer. </span>
+          </div>
+
+          <div class="col-sm-12 form-section-title"> Authentication method </div>
+          <box-selector radio-name="'authOptions'" value="authMethod" options="authOptions" on-change="(onChangeAuthMethod)"></box-selector>
+
+          <internal-auth ng-if="authenticationMethodSelected(1)" on-save-settings="(saveSettings)" save-button-state="state.actionInProgress"></internal-auth>
+
+          <ldap-settings
+            ng-if="authenticationMethodSelected(2)"
+            settings="formValues.ldap.ldapSettings"
+            tlsca-cert="formValues.TLSCACert"
+            state="state"
+            connectivity-check="LDAPConnectivityCheck"
+            on-save-settings="(saveSettings)"
+            save-button-state="state.actionInProgress"
+            is-ldap-form-valid="isLDAPFormValid"
+          ></ldap-settings>
+
+          <ad-settings
+            ng-if="authenticationMethodSelected(4)"
+            settings="formValues.ldap.adSettings"
+            tlsca-cert="formValues.TLSCACert"
+            state="state"
+            connectivity-check="LDAPConnectivityCheck"
+            on-save-settings="(saveSettings)"
+            save-button-state="state.actionInProgress"
+            is-ldap-form-valid="isLDAPFormValid()"
+          ></ad-settings>
+
+          <oauth-settings
+            ng-if="authenticationMethodSelected(3)"
+            settings="OAuthSettings"
+            teams="teams"
+            on-save-settings="(saveSettings)"
+            save-button-state="state.actionInProgress"
+          ></oauth-settings>
+        </form>
+      </rd-widget-body>
+    </rd-widget>
+  </div>
+</div>
