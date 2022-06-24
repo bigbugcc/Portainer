@@ -1,7 +1,7 @@
 <rd-header>
-  <rd-header-title title-text="Registry details"></rd-header-title>
+  <rd-header-title title-text="仓库详情"></rd-header-title>
   <rd-header-content>
-    <a ui-sref="portainer.registries">Registries</a> &gt; <a ui-sref="portainer.registries.registry({id: $ctrl.registry.Id})">{{ $ctrl.registry.Name }}</a>
+    <a ui-sref="portainer.registries">仓库</a> &gt; <a ui-sref="portainer.registries.registry({id: $ctrl.registry.Id})">{{ $ctrl.registry.Name }}</a>
   </rd-header-content>
 </rd-header>
 
@@ -12,7 +12,7 @@
         <form class="form-horizontal">
           <!-- name-input -->
           <div class="form-group">
-            <label for="registry_name" class="col-sm-3 col-lg-2 control-label text-left">Name</label>
+            <label for="registry_name" class="col-sm-3 col-lg-2 control-label text-left">名称</label>
             <div class="col-sm-9 col-lg-10">
               <input type="text" class="form-control" id="registry_name" ng-model="$ctrl.formValues.Name" placeholder="e.g. my-registry" ng-change="$ctrl.onChangeName()" />
             </div>
@@ -20,7 +20,7 @@
           <div class="form-group" ng-show="$ctrl.state.nameAlreadyExists">
             <div class="col-sm-12 small text-warning">
               <div>
-                <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> A registry with the same name already exists.</p>
+                <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 已存在同名的仓库.</p>
               </div>
             </div>
           </div>
@@ -28,9 +28,8 @@
           <!-- registry-url-input -->
           <div class="form-group">
             <label for="registry_url" class="col-sm-3 col-lg-2 control-label text-left">
-              Registry URL
-              <portainer-tooltip position="bottom" message="URL or IP address of a Docker registry. Any protocol or trailing slash will be stripped if present.">
-              </portainer-tooltip>
+              仓库 URL
+              <portainer-tooltip position="bottom" message="Docker仓库的URL或IP地址。任何协议或尾部斜杠（如果存在）将被删除."> </portainer-tooltip>
             </label>
             <div class="col-sm-9 col-lg-10">
               <input type="text" class="form-control" id="registry_url" ng-model="$ctrl.registry.URL" placeholder="e.g. 10.0.0.10:5000 or myregistry.domain.tld" />
@@ -42,8 +41,8 @@
           <div class="form-group" ng-if="$ctrl.registry.Type !== $ctrl.RegistryTypes.PROGET">
             <div class="col-sm-12">
               <label for="registry_auth" class="control-label text-left">
-                Authentication
-                <portainer-tooltip position="bottom" message="Enable this option if you need to specify credentials to connect to this registry."> </portainer-tooltip>
+                身份认证
+                <portainer-tooltip position="bottom" message="如果需要指定连接到此仓库的凭据，请启用此选项."> </portainer-tooltip>
               </label>
               <label class="switch" style="margin-left: 20px"> <input type="checkbox" ng-model="$ctrl.registry.Authentication" /><i></i> </label>
             </div>
@@ -79,7 +78,7 @@
             <!-- organisation-checkbox -->
             <div class="form-group">
               <div class="col-sm-12">
-                <label class="control-label text-left"> Use organisation registry </label>
+                <label class="control-label text-left"> 使用组织仓库 </label>
                 <label class="switch" style="margin-left: 20px"> <input type="checkbox" ng-model="$ctrl.registry.Quay.UseOrganisation" /><i></i> </label>
               </div>
             </div>
@@ -87,7 +86,7 @@
             <div ng-if="$ctrl.registry.Quay.UseOrganisation">
               <!-- organisation_name -->
               <div class="form-group">
-                <label for="organisation_name" class="col-sm-3 col-lg-2 control-label text-left">Organisation name</label>
+                <label for="organisation_name" class="col-sm-3 col-lg-2 control-label text-left">组织名称</label>
                 <div class="col-sm-9 col-lg-10">
                   <input type="text" class="form-control" id="organisation_name" name="organisation_name" ng-model="$ctrl.registry.Quay.OrganisationName" required />
                 </div>
@@ -99,7 +98,7 @@
           <div ng-if="$ctrl.registry.Type == $ctrl.RegistryTypes.ECR">
             <!-- region -->
             <div class="form-group">
-              <label for="registry_region" class="col-sm-3 col-lg-2 control-label text-left">Region</label>
+              <label for="registry_region" class="col-sm-3 col-lg-2 control-label text-left">区域</label>
               <div class="col-sm-9 col-lg-10">
                 <input type="text" class="form-control" id="registry_region" name="registry_region" placeholder="us-west-1" ng-model="$ctrl.registry.Ecr.Region" required />
               </div>
@@ -107,7 +106,7 @@
             <div class="form-group" ng-show="registryFormEcr.registry_region.$invalid">
               <div class="col-sm-12 small text-warning">
                 <div ng-messages="registryFormEcr.registry_region.$error">
-                  <p ng-message="required"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> This field is required.</p>
+                  <p ng-message="required"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 必填项.</p>
                 </div>
               </div>
             </div>
@@ -123,10 +122,10 @@
                 ng-click="$ctrl.updateRegistry()"
                 button-spinner="$ctrl.state.actionInProgress"
               >
-                <span ng-hide="$ctrl.state.actionInProgress">Update registry</span>
-                <span ng-show="$ctrl.state.actionInProgress">Updating registry...</span>
+                <span ng-hide="$ctrl.state.actionInProgress">更新仓库</span>
+                <span ng-show="$ctrl.state.actionInProgress">正在更新仓库...</span>
               </button>
-              <a type="button" class="btn btn-default btn-sm" ui-sref="portainer.registries">Cancel</a>
+              <a type="button" class="btn btn-default btn-sm" ui-sref="portainer.registries">取消</a>
             </div>
           </div>
         </form>

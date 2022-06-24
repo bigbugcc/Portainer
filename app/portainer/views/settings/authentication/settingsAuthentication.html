@@ -1,18 +1,18 @@
 <rd-header>
-  <rd-header-title title-text="Authentication settings"></rd-header-title>
-  <rd-header-content> <a ui-sref="portainer.settings">Settings</a> &gt; Authentication </rd-header-content>
+  <rd-header-title title-text="身份认证设置"></rd-header-title>
+  <rd-header-content> <a ui-sref="portainer.settings">设置</a> &gt; 身份认证 </rd-header-content>
 </rd-header>
 
 <div class="row">
   <div class="col-sm-12">
     <rd-widget>
-      <rd-widget-header icon="fa-users" title-text="Authentication"></rd-widget-header>
+      <rd-widget-header icon="fa-users" title-text="身份认证"></rd-widget-header>
       <rd-widget-body>
         <form class="form-horizontal" name="authSettingsForm">
-          <div class="col-sm-12 form-section-title"> Configuration </div>
+          <div class="col-sm-12 form-section-title"> 配置 </div>
           <div class="form-group">
             <label for="user_timeout" class="col-sm-2 control-label text-left">
-              Session lifetime
+              会话有效时间
               <portainer-tooltip message="Time before users are forced to relogin."></portainer-tooltip>
             </label>
             <div class="col-sm-10">
@@ -25,10 +25,10 @@
             </div>
           </div>
           <div class="form-group">
-            <span class="col-sm-12 text-muted small"> Changing from default is only recommended if you have additional layers of authentication in front of Portainer. </span>
+            <span class="col-sm-12 text-muted small"> 只有在Portainer前面有额外的身份验证层时，才建议更改默认值. </span>
           </div>
 
-          <div class="col-sm-12 form-section-title"> Authentication method </div>
+          <div class="col-sm-12 form-section-title"> 身份认证方式 </div>
           <box-selector radio-name="'authOptions'" value="authMethod" options="authOptions" on-change="(onChangeAuthMethod)"></box-selector>
 
           <internal-auth ng-if="authenticationMethodSelected(1)" on-save-settings="(saveSettings)" save-button-state="state.actionInProgress"></internal-auth>

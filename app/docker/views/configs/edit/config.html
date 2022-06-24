@@ -5,7 +5,7 @@
     </a>
   </rd-header-title>
   <rd-header-content>
-    <a ui-sref="docker.configs">Configs</a> &gt; <a ui-sref="docker.configs.config({id: config.Id})">{{ config.Name }}</a>
+    <a ui-sref="docker.configs">配置</a> &gt; <a ui-sref="docker.configs.config({id: config.Id})">{{ config.Name }}</a>
   </rd-header-content>
 </rd-header>
 
@@ -17,7 +17,7 @@
         <table class="table">
           <tbody>
             <tr>
-              <td>Name</td>
+              <td>名称</td>
               <td>{{ config.Name }}</td>
             </tr>
             <tr>
@@ -33,15 +33,15 @@
               </td>
             </tr>
             <tr>
-              <td>Created</td>
+              <td>已创建</td>
               <td>{{ config.CreatedAt | getisodate }}</td>
             </tr>
             <tr>
-              <td>Last updated</td>
+              <td>最后更新</td>
               <td>{{ config.UpdatedAt | getisodate }}</td>
             </tr>
             <tr ng-if="!(config.Labels | emptyobject)">
-              <td>Labels</td>
+              <td>标签</td>
               <td>
                 <table class="table table-bordered table-condensed">
                   <tr ng-repeat="(k, v) in config.Labels">

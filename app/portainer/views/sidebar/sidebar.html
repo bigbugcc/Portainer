@@ -9,7 +9,7 @@
   </div>
   <div class="sidebar-content">
     <ul class="sidebar">
-      <sidebar-menu-item path="portainer.home" icon-class="fa-home fa-fw" class-name="sidebar-list" data-cy="portainerSidebar-home" title="Home">Home</sidebar-menu-item>
+      <sidebar-menu-item path="portainer.home" icon-class="fa-home fa-fw" class-name="sidebar-list" data-cy="portainerSidebar-home" title="Home">首页</sidebar-menu-item>
 
       <li class="sidebar-title endpoint-name" ng-if="applicationState.endpoint.name">
         <span class="fa fa-plug space-right"></span>{{ applicationState.endpoint.name }}
@@ -58,39 +58,37 @@
         <sidebar-menu
           ng-show="display"
           icon-class="fa-users fa-fw"
-          label="Users"
+          label="用户"
           path="portainer.users"
           is-sidebar-open="toggle"
           children-paths="['portainer.users.user' ,'portainer.teams' ,'portainer.teams.team' ,'portainer.roles' ,'portainer.roles.role' ,'portainer.roles.new']"
         >
-          <sidebar-menu-item path="portainer.teams" class-name="sidebar-sublist" data-cy="portainerSidebar-teams" title="Teams">Teams</sidebar-menu-item>
-          <sidebar-menu-item path="portainer.roles" class-name="sidebar-sublist" data-cy="portainerSidebar-roles" title="Roles">Roles</sidebar-menu-item>
+          <sidebar-menu-item path="portainer.teams" class-name="sidebar-sublist" data-cy="portainerSidebar-teams" title="Teams">团队</sidebar-menu-item>
+          <sidebar-menu-item path="portainer.roles" class-name="sidebar-sublist" data-cy="portainerSidebar-roles" title="Roles">角色</sidebar-menu-item>
         </sidebar-menu>
 
         <div ng-if="isAdmin">
           <sidebar-menu
             icon-class="fa-plug fa-fw"
-            label="Environments"
+            label="环境"
             path="portainer.endpoints"
             is-sidebar-open="toggle"
             children-paths="['portainer.endpoints.endpoint', 'portainer.endpoints.new', 'portainer.endpoints.endpoint.access', 'portainer.groups', 'portainer.groups.group', 'portainer.groups.group.access', 'portainer.groups.new', 'portainer.tags']"
           >
-            <sidebar-menu-item path="portainer.groups" class-name="sidebar-sublist" data-cy="portainerSidebar-endpointGroups" title="Groups">Groups</sidebar-menu-item>
-            <sidebar-menu-item path="portainer.tags" class-name="sidebar-sublist" data-cy="portainerSidebar-endpointTags" title="Tags">Tags</sidebar-menu-item>
+            <sidebar-menu-item path="portainer.groups" class-name="sidebar-sublist" data-cy="portainerSidebar-endpointGroups" title="Groups">分组</sidebar-menu-item>
+            <sidebar-menu-item path="portainer.tags" class-name="sidebar-sublist" data-cy="portainerSidebar-endpointTags" title="Tags">标签</sidebar-menu-item>
           </sidebar-menu>
 
           <sidebar-menu-item path="portainer.registries" icon-class="fa-database fa-fw" class-name="sidebar-list" data-cy="portainerSidebar-registries" title="Registries"
-            >Registries</sidebar-menu-item
+            >仓库</sidebar-menu-item
           >
 
-          <sidebar-menu label="Authentication logs" icon-class="fa-history fa-fw" path="portainer.authLogs" is-sidebar-open="toggle" children-paths="['portainer.activityLogs']">
-            <sidebar-menu-item path="portainer.activityLogs" class-name="sidebar-sublist" data-cy="portainerSidebar-activityLogs" title="Activity Logs"
-              >Activity Logs</sidebar-menu-item
-            >
+          <sidebar-menu label="身份认证日志" icon-class="fa-history fa-fw" path="portainer.authLogs" is-sidebar-open="toggle" children-paths="['portainer.activityLogs']">
+            <sidebar-menu-item path="portainer.activityLogs" class-name="sidebar-sublist" data-cy="portainerSidebar-activityLogs" title="Activity Logs">活动日志</sidebar-menu-item>
           </sidebar-menu>
 
           <sidebar-menu
-            label="Settings"
+            label="设置"
             icon-class="fa-cogs fa-fw"
             path="portainer.settings"
             is-sidebar-open="toggle"
@@ -102,10 +100,10 @@
               data-cy="portainerSidebar-authentication"
               title="Authentication"
               ng-show="display"
-              >Authentication</sidebar-menu-item
+              >身份认证</sidebar-menu-item
             >
-            <sidebar-menu-item path="portainer.settings.edgeCompute" class-name="sidebar-sublist" data-cy="portainerSidebar-edge-compute" title="Edge Compute"
-              >Edge Compute</sidebar-menu-item
+            <sidebar-menu-item path="portainer.settings.edgeCompute" class-name="sidebar-sublist" data-cy="portainerSidebar-edge-compute" title="边缘计算"
+              >边缘计算</sidebar-menu-item
             >
 
             <div class="sidebar-sublist">

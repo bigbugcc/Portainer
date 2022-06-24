@@ -1,14 +1,14 @@
 <rd-header>
   <rd-header-title title-text="Create container"></rd-header-title>
-  <rd-header-content> <a ui-sref="docker.containers">Containers</a> &gt; Add container </rd-header-content>
+  <rd-header-content> <a ui-sref="docker.containers">容器</a> &gt; Add container </rd-header-content>
 </rd-header>
 
 <information-panel title-text="Caution" ng-if="state.mode == 'duplicate'">
   <span class="small">
     <p class="text-muted">
       <i class="fa fa-exclamation-circle orange-icon" aria-hidden="true" style="margin-right: 2px"></i>
-      The new container may fail to start if the image is changed, and settings from the previous container aren't compatible. Common causes include entrypoint, cmd or
-      <a href="http://portainer.readthedocs.io/en/stable/agent.html" target="_blank">other settings</a> set by an image.
+      如果镜像更改，新容器可能无法启动，并且与之前容器的设置不兼容。常见原因包括 entrypoint、cmd 或
+      <a href="http://portainer.readthedocs.io/en/stable/agent.html" target="_blank">其他</a> 镜像配置.
     </p>
   </span>
 </information-panel>
@@ -26,7 +26,7 @@
             </div>
           </div>
           <!-- !name-input -->
-          <div class="col-sm-12 form-section-title"> Image configuration </div>
+          <div class="col-sm-12 form-section-title"> 镜像配置 </div>
           <div ng-if="!formValues.RegistryModel.Registry && fromContainer">
             <i class="fa fa-exclamation-triangle orange-icon" aria-hidden="true"></i>
             <span class="small text-danger" style="margin-left: 5px">

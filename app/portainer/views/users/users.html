@@ -4,7 +4,7 @@
       <i class="fa fa-sync" aria-hidden="true"></i>
     </a>
   </rd-header-title>
-  <rd-header-content>User management</rd-header-content>
+  <rd-header-content>用户管理</rd-header-content>
 </rd-header>
 
 <div class="row">
@@ -17,11 +17,7 @@
           <div class="form-group">
             <label for="username" class="col-sm-3 col-lg-2 control-label text-left">
               Username
-              <portainer-tooltip
-                ng-if="AuthenticationMethod === 2"
-                position="bottom"
-                message="Username must exactly match username defined in external LDAP source."
-              ></portainer-tooltip>
+              <portainer-tooltip ng-if="AuthenticationMethod === 2" position="bottom" message="用户名必须与外部LDAP源中定义的用户名完全匹配."></portainer-tooltip>
             </label>
             <div class="col-sm-8">
               <div class="input-group">
@@ -42,7 +38,7 @@
           <!-- !name-input -->
           <!-- new-password-input -->
           <div class="form-group" ng-if="AuthenticationMethod === 1">
-            <label for="password" class="col-sm-3 col-lg-2 control-label text-left">Password</label>
+            <label for="password" class="col-sm-3 col-lg-2 control-label text-left">密码</label>
             <div class="col-sm-8">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
@@ -53,7 +49,7 @@
           <!-- !new-password-input -->
           <!-- confirm-password-input -->
           <div class="form-group" ng-if="AuthenticationMethod === 1">
-            <label for="confirm_password" class="col-sm-3 col-lg-2 control-label text-left">Confirm password</label>
+            <label for="confirm_password" class="col-sm-3 col-lg-2 control-label text-left">确认密码</label>
             <div class="col-sm-8">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
@@ -82,11 +78,8 @@
           <div class="form-group" ng-if="isAdmin">
             <div class="col-sm-12">
               <label for="permissions" class="control-label text-left">
-                Administrator
-                <portainer-tooltip
-                  position="bottom"
-                  message="Administrators have access to Portainer settings management as well as full control over all defined environments and their resources."
-                ></portainer-tooltip>
+                管理员
+                <portainer-tooltip position="bottom" message="管理员可以访问Portainer设置管理并完全控制所有定义的环境及其资源."></portainer-tooltip>
               </label>
               <label class="switch" style="margin-left: 20px"> <input type="checkbox" ng-model="formValues.Administrator" data-cy="user-adminCheckbox" /><i></i> </label>
             </div>
@@ -95,21 +88,21 @@
           <!-- teams -->
           <div class="form-group" ng-if="!formValues.Administrator">
             <div class="col-sm-12">
-              <label class="control-label text-left"> Add to team(s) </label>
+              <label class="control-label text-left"> 添加团队 </label>
               <span class="small text-muted" style="margin-left: 20px" ng-if="teams.length === 0">
-                You don't seem to have any teams to add users into. Head over to the <a ui-sref="portainer.teams">Teams view</a> to create some.
+                您似乎没有任何可添加用户的团队,前往 <a ui-sref="portainer.teams">团队页面</a> 视图创建.
               </span>
               <span
                 isteven-multi-select
                 ng-if="teams.length > 0"
                 input-model="teams"
                 output-model="formValues.Teams"
-                button-label="Name"
+                button-label="名称"
                 item-label="Name"
                 tick-property="ticked"
                 helper-elements="filter"
                 search-property="Name"
-                translation="{nothingSelected: 'Select one or more teams', search: 'Search...'}"
+                translation="{nothingSelected: '选择一个或多个团队', search: '搜索...'}"
                 style="margin-left: 20px"
                 data-cy="user-teamSelect"
               >
@@ -119,10 +112,7 @@
           <!-- !teams -->
           <div class="form-group" ng-if="isAdmin && !formValues.Administrator && formValues.Teams.length === 0">
             <div class="col-sm-12">
-              <span class="small text-muted">
-                Note: non-administrator users who aren't in a team don't have access to any environments by default. Head over to the
-                <a ui-sref="portainer.endpoints">Environments view</a> to manage their accesses.
-              </span>
+              <span class="small text-muted"> 注意：默认情况下，不在团队中的非管理员用户无权访问任何环境。转到 <a ui-sref="portainer.endpoints">环境页面</a> 以管理其访问. </span>
             </div>
           </div>
           <div class="form-group">
@@ -135,8 +125,8 @@
                 button-spinner="state.actionInProgress"
                 data-cy="user-createUserButton"
               >
-                <span ng-hide="state.actionInProgress"><i class="fa fa-plus" aria-hidden="true"></i> Create user</span>
-                <span ng-show="state.actionInProgress">Creating user...</span>
+                <span ng-hide="state.actionInProgress"><i class="fa fa-plus" aria-hidden="true"></i> 创建用户</span>
+                <span ng-show="state.actionInProgress">正在创建用户...</span>
               </button>
               <span class="text-danger" ng-if="state.userCreationError" style="margin: 5px">
                 <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{ state.userCreationError }}

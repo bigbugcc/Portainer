@@ -4,7 +4,7 @@
       <i class="fa fa-sync" aria-hidden="true"></i>
     </a>
   </rd-header-title>
-  <rd-header-content>Custom Templates</rd-header-content>
+  <rd-header-content>自定义模板</rd-header-content>
 </rd-header>
 <div class="row">
   <stack-from-template-form
@@ -20,28 +20,26 @@
       <div class="form-group">
         <div class="col-sm-12">
           <a class="small interactive" ng-show="!$ctrl.state.showAdvancedOptions" ng-click="$ctrl.state.showAdvancedOptions = true;">
-            <i class="fa fa-plus space-right" aria-hidden="true"></i> Customize stack
+            <i class="fa fa-plus space-right" aria-hidden="true"></i> 自定义堆栈
           </a>
           <a class="small interactive" ng-show="$ctrl.state.showAdvancedOptions" ng-click="$ctrl.state.showAdvancedOptions = false;">
-            <i class="fa fa-minus space-right" aria-hidden="true"></i> Hide custom stack
+            <i class="fa fa-minus space-right" aria-hidden="true"></i> 隐藏自定义堆栈
           </a>
         </div>
       </div>
       <div ng-if="$ctrl.state.showAdvancedOptions">
         <!-- web-editor -->
-        <div class="col-sm-12 form-section-title"> Web editor </div>
+        <div class="col-sm-12 form-section-title"> Web 编辑器 </div>
         <div class="form-group">
           <span class="col-sm-12 text-muted small">
-            You can get more information about Compose file format in the
-            <a href="https://docs.docker.com/compose/compose-file/" target="_blank"> official documentation </a>
-            .
+            您可在<a href="https://docs.docker.com/compose/compose-file/" target="_blank"> 官方文档 </a>中获得有关撰写文件格式的更多信息.
           </span>
         </div>
         <div class="form-group">
           <div class="col-sm-12">
             <code-editor
               identifier="custom-template-creation-editor"
-              placeholder="# Define or paste the content of your docker-compose file here"
+              placeholder="# 在此处定义或粘贴docker-compose文件的内容"
               yml="true"
               value="$ctrl.formValues.fileContent"
               on-change="($ctrl.editorUpdate)"

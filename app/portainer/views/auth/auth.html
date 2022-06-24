@@ -43,7 +43,7 @@
             <!-- use internal auth button -->
             <div class="form-group" ng-if="ctrl.state.showOAuthLogin && !ctrl.state.showStandardLogin">
               <div class="col-sm-12" style="display: flex; justify-content: center">
-                <div class="btn btn-sm btn-primary pull-left" style="margin-left: 2px" ng-click="ctrl.toggleStandardLogin()"> Use internal authentication </div>
+                <div class="btn btn-sm btn-primary pull-left" style="margin-left: 2px" ng-click="ctrl.toggleStandardLogin()"> 使用内部身份验证 </div>
               </div>
             </div>
 
@@ -71,7 +71,7 @@
                   data-cy="auth-loginButton"
                 >
                   <span ng-hide="ctrl.state.loginInProgress"><i class="fa fa-sign-in-alt" aria-hidden="true"></i> Login</span>
-                  <span ng-show="ctrl.state.loginInProgress">Login in progress...</span>
+                  <span ng-show="ctrl.state.loginInProgress">正在登录...</span>
                 </button>
               </div>
             </div>
@@ -90,7 +90,7 @@
       <div class="panel panel-default" ng-show="ctrl.state.loginInProgress">
         <div class="panel-body">
           <div class="form-group text-center">
-            <span class="small text-muted">Authentication in progress... <span button-spinner="true"></span></span>
+            <span class="small text-muted">正在进行身份验证... <span button-spinner="true"></span></span>
           </div>
         </div>
       </div>
