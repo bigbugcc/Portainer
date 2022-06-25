@@ -22,32 +22,32 @@
             <tr>
               <th>
                 <a ng-click="$ctrl.changeOrderBy('Name')">
-                  Name
+                  ����
                   <i class="fa fa-sort-alpha-down" aria-hidden="true" ng-if="$ctrl.state.orderBy === 'Name' && !$ctrl.state.reverseOrder"></i>
                   <i class="fa fa-sort-alpha-up" aria-hidden="true" ng-if="$ctrl.state.orderBy === 'Name' && $ctrl.state.reverseOrder"></i>
                 </a>
               </th>
               <th>
                 <a ng-click="$ctrl.changeOrderBy('Size')">
-                  Size
+                  ��С
                   <i class="fa fa-sort-alpha-down" aria-hidden="true" ng-if="$ctrl.state.orderBy === 'Size' && !$ctrl.state.reverseOrder"></i>
                   <i class="fa fa-sort-alpha-up" aria-hidden="true" ng-if="$ctrl.state.orderBy === 'Size' && $ctrl.state.reverseOrder"></i>
                 </a>
               </th>
               <th>
                 <a ng-click="$ctrl.changeOrderBy('ModTime')">
-                  Last modification
+                  ɸѡ��
                   <i class="fa fa-sort-alpha-down" aria-hidden="true" ng-if="$ctrl.state.orderBy === 'ModTime' && !$ctrl.state.reverseOrder"></i>
                   <i class="fa fa-sort-alpha-up" aria-hidden="true" ng-if="$ctrl.state.orderBy === 'ModTime' && $ctrl.state.reverseOrder"></i>
                 </a>
               </th>
-              <th> Actions </th>
+              <th> ���� </th>
             </tr>
           </thead>
           <tbody>
             <tr ng-if="!$ctrl.isRoot">
               <td colspan="4">
-                <a ng-click="$ctrl.goToParent()"><i class="fa fa-level-up-alt space-right"></i>Go to parent</a>
+                <a ng-click="$ctrl.goToParent()"><i class="fa fa-level-up-alt space-right"></i>������һ��</a>
               </td>
             </tr>
             <tr ng-repeat="item in ($ctrl.state.filteredDataSet = ($ctrl.dataset | filter:$ctrl.state.textFilter | orderBy:$ctrl.state.orderBy:$ctrl.state.reverseOrder))">
@@ -74,21 +74,21 @@
               </td>
               <td>
                 <btn authorization="DockerAgentBrowseGet" class="btn btn-xs btn-primary space-right" ng-click="$ctrl.download({ name: item.Name })" ng-if="!item.Dir">
-                  <i class="fa fa-download" aria-hidden="true"></i> Download
+                  <i class="fa fa-download" aria-hidden="true"></i> ����
                 </btn>
                 <btn authorization="DockerAgentBrowseRename" class="btn btn-xs btn-primary space-right" ng-click="item.newName = item.Name; item.edit = true">
-                  <i class="fa fa-edit" aria-hidden="true"></i> Rename
+                  <i class="fa fa-edit" aria-hidden="true"></i> ������
                 </btn>
                 <btn authorization="DockerAgentBrowseDelete" class="btn btn-xs btn-danger" ng-click="$ctrl.delete({ name: item.Name })">
-                  <i class="fa fa-trash" aria-hidden="true"></i> Delete
+                  <i class="fa fa-trash" aria-hidden="true"></i> ɾ��
                 </btn>
               </td>
             </tr>
             <tr ng-if="!$ctrl.dataset">
-              <td colspan="5" class="text-center text-muted">Loading...</td>
+              <td colspan="5" class="text-center text-muted">������...</td>
             </tr>
             <tr ng-if="$ctrl.state.filteredDataSet.length === 0">
-              <td colspan="5" class="text-center text-muted">No files found.</td>
+              <td colspan="5" class="text-center text-muted">δ�ҵ��ļ�</td>
             </tr>
           </tbody>
         </table>
