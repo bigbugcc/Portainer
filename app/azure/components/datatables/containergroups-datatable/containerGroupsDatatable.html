@@ -6,14 +6,14 @@
       </div>
       <div class="actionBar">
         <button type="button" class="btn btn-sm btn-danger" ng-disabled="$ctrl.state.selectedItemCount === 0" ng-click="$ctrl.removeAction($ctrl.state.selectedItems)">
-          <i class="fa fa-trash-alt space-right" aria-hidden="true"></i>Remove
+          <i class="fa fa-trash-alt space-right" aria-hidden="true"></i>移除
         </button>
         <button type="button" class="btn btn-sm btn-primary" ui-sref="azure.containerinstances.new">
-          <i class="fa fa-plus space-right" aria-hidden="true"></i>Add container
+          <i class="fa fa-plus space-right" aria-hidden="true"></i>添加容器
         </button>
       </div>
       <div class="searchBar">
-        <i class="fa fa-search searchIcon" aria-hidden="true"></i>
+        <i class="fa fa-search searchIcon" aria-hidden="true"></i> 
         <input
           type="text"
           class="searchInput"
@@ -34,22 +34,22 @@
                   <label for="select_all"></label>
                 </span>
                 <a ng-click="$ctrl.changeOrderBy('Name')">
-                  Name
+                  名称
                   <i class="fa fa-sort-alpha-down" aria-hidden="true" ng-if="$ctrl.state.orderBy === 'Name' && !$ctrl.state.reverseOrder"></i>
                   <i class="fa fa-sort-alpha-up" aria-hidden="true" ng-if="$ctrl.state.orderBy === 'Name' && $ctrl.state.reverseOrder"></i>
                 </a>
               </th>
               <th>
                 <a ng-click="$ctrl.changeOrderBy('Location')">
-                  Location
+                  位置
                   <i class="fa fa-sort-alpha-down" aria-hidden="true" ng-if="$ctrl.state.orderBy === 'Location' && !$ctrl.state.reverseOrder"></i>
                   <i class="fa fa-sort-alpha-up" aria-hidden="true" ng-if="$ctrl.state.orderBy === 'Location' && $ctrl.state.reverseOrder"></i>
                 </a>
               </th>
-              <th> Published Ports </th>
+              <th> 外部端口</th>
               <th>
                 <a ng-click="$ctrl.changeOrderBy('ResourceControl.Ownership')">
-                  Ownership
+                  所有权
                   <i class="fa fa-sort-alpha-down" aria-hidden="true" ng-if="$ctrl.state.orderBy === 'ResourceControl.Ownership' && !$ctrl.state.reverseOrder"></i>
                   <i class="fa fa-sort-alpha-up" aria-hidden="true" ng-if="$ctrl.state.orderBy === 'ResourceControl.Ownership' && $ctrl.state.reverseOrder"></i>
                 </a>
@@ -83,10 +83,10 @@
               </td>
             </tr>
             <tr ng-if="!$ctrl.dataset">
-              <td colspan="3" class="text-center text-muted">Loading...</td>
+              <td colspan="3" class="text-center text-muted">加载中...</td>
             </tr>
             <tr ng-if="$ctrl.state.filteredDataSet.length === 0">
-              <td colspan="3" class="text-center text-muted">No container available.</td>
+              <td colspan="3" class="text-center text-muted">无可用的容器。</td>
             </tr>
           </tbody>
         </table>
