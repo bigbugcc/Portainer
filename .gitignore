@@ -8,6 +8,7 @@ storybook-static
 **/.vscode/settings.json
 **/.vscode/tasks.json
 *.DS_Store
+.vs/
 
 .eslintcache
 __debug_bin
