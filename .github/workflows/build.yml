@@ -1,4 +1,4 @@
-name: Portainer-ce Build(CN)
+name: Build(CN)
 on:
   push:
     branches: [ main ]
@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  frontfile: 'front-public.tar.gz'
+  frontfile: 'front.tar.gz'
   node-version: '16.13.2'
   go-version: '>=1.17.0'
 
