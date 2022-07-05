@@ -1,7 +1,7 @@
-<!-- use registry -->
+﻿<!-- use registry -->
 <div>
   <div class="form-group" ng-if="$ctrl.model.UseRegistry">
-    <label for="image_registry" class="control-label text-left" ng-class="$ctrl.labelClass"> Registry </label>
+    <label for="image_registry" class="control-label text-left" ng-class="$ctrl.labelClass"> 注册 </label>
     <div ng-class="$ctrl.inputClass">
       <select
         ng-options="registry as registry.Name for registry in $ctrl.registries track by registry.Id"
@@ -11,7 +11,7 @@
         data-cy="component-registrySelect"
       ></select>
     </div>
-    <label for="image_name" ng-class="$ctrl.labelClass" class="margin-sm-top control-label text-left">Image</label>
+    <label for="image_name" ng-class="$ctrl.labelClass" class="margin-sm-top control-label text-left">镜像</label>
     <div ng-class="$ctrl.inputClass" class="margin-sm-top">
       <div class="input-group">
         <span class="input-group-addon" id="registry-name">{{ $ctrl.displayedRegistryURL() }}</span>
@@ -34,7 +34,7 @@
             title="Search image on Docker Hub"
             target="_blank"
           >
-            <i class="fab fa-docker"></i> Search
+            <i class="fab fa-docker"></i> 搜索
           </a>
         </span>
       </div>
@@ -47,10 +47,10 @@
       <span class="small">
         <p class="text-muted" style="margin-left: 15px">
           <i class="fa fa-exclamation-circle blue-icon" aria-hidden="true" style="margin-right: 2px"></i>
-          When using advanced mode, image and repository <b>must be</b> publicly available.
+          使用高级模式时,镜像和仓库 <b>必须</b> 公开。
         </p>
       </span>
-      <label for="image_name" ng-class="$ctrl.labelClass" class="control-label text-left">Image </label>
+      <label for="image_name" ng-class="$ctrl.labelClass" class="control-label text-left"> 镜像 </label>
       <div ng-class="$ctrl.inputClass">
         <input type="text" class="form-control" ng-model="$ctrl.model.Image" name="image_name" placeholder="e.g. registry:port/my-image:my-tag" required />
       </div>
@@ -62,8 +62,8 @@
     <div class="col-sm-12 small text-warning">
       <div ng-messages="$ctrl.form.image_name.$error">
         <p ng-message="required">
-          <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Image name is required.
-          <span ng-if="$ctrl.canPull">Tag must be specified otherwise Portainer will pull all tags associated to the image.</span>
+          <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 镜像名是必填项。
+          <span ng-if="$ctrl.canPull">必须指定标签，否则 Portainer 将拉取与镜像关联的所有标签。</span>
         </p>
       </div>
     </div>
@@ -73,10 +73,10 @@
     <div class="col-sm-12">
       <p>
         <a class="small interactive" ng-if="!$ctrl.model.UseRegistry" ng-click="$ctrl.model.UseRegistry = true;">
-          <i class="fa fa-database space-right" aria-hidden="true"></i> Simple mode
+          <i class="fa fa-database space-right" aria-hidden="true"></i> 简单模式
         </a>
         <a class="small interactive" ng-if="$ctrl.model.UseRegistry" ng-click="$ctrl.model.UseRegistry = false;">
-          <i class="fa fa-globe space-right" aria-hidden="true"></i> Advanced mode
+          <i class="fa fa-globe space-right" aria-hidden="true"></i> 高级模式
         </a>
       </p>
     </div>
