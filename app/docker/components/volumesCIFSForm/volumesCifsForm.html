@@ -1,10 +1,10 @@
-<!-- CIFS-settings -->
+﻿<!-- CIFS-settings -->
 <div ng-show="$ctrl.data.useCIFS">
   <ng-form class="form-horizontal" name="cifsInformationForm">
-    <div class="col-sm-12 form-section-title"> CIFS Settings </div>
+    <div class="col-sm-12 form-section-title"> CIFS 设置 </div>
     <!-- address-input -->
     <div class="form-group col-md-12">
-      <label for="cifs_address" class="col-sm-2 col-md-1 control-label text-left">Address</label>
+      <label for="cifs_address" class="col-sm-2 col-md-1 control-label text-left">地址</label>
       <div class="col-sm-10 col-md-11">
         <input type="text" class="form-control" ng-model="$ctrl.data.serverAddress" name="cifs_address" placeholder="e.g. my.cifs-server.com OR xxx.xxx.xxx.xxx" required />
       </div>
@@ -12,14 +12,14 @@
     <div class="form-group col-md-12" ng-show="cifsInformationForm.cifs_address.$invalid">
       <div class="small text-warning">
         <div ng-messages="cifsInformationForm.cifs_address.$error">
-          <p ng-message="required"> <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> This field is required.</p>
+          <p ng-message="required"> <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 此处为必填项。</p>
         </div>
       </div>
     </div>
     <!-- !address-input -->
     <!-- mount-point-input -->
     <div class="form-group col-md-12">
-      <label for="cifs_share" class="col-sm-2 col-md-1 control-label text-left">Share</label>
+      <label for="cifs_share" class="col-sm-2 col-md-1 control-label text-left">共享</label>
       <div class="col-sm-10 col-md-11">
         <input type="text" class="form-control" ng-model="$ctrl.data.share" name="cifs_share" placeholder="e.g. /myshare" required />
       </div>
@@ -27,14 +27,14 @@
     <div class="form-group col-md-12" ng-show="cifsInformationForm.cifs_share.$invalid">
       <div class="small text-warning">
         <div ng-messages="cifsInformationForm.cifs_share.$error">
-          <p ng-message="required"> <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> This field is required.</p>
+          <p ng-message="required"> <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 此处为必填项。</p>
         </div>
       </div>
     </div>
     <!-- !mount-point-input -->
     <!-- version-input -->
     <div class="form-group col-md-12">
-      <label for="cifs_version" class="col-sm-2 col-md-1 control-label text-left">CIFS Version</label>
+      <label for="cifs_version" class="col-sm-2 col-md-1 control-label text-left">CIFS 版本</label>
       <div class="col-sm-10 col-md-11">
         <select class="form-control" ng-model="$ctrl.data.version" name="cifs_version" ng-options="version for version in $ctrl.data.versions" required></select>
       </div>
@@ -42,14 +42,14 @@
     <div class="form-group col-md-12" ng-show="cifsInformationForm.cifs_version.$invalid">
       <div class="small text-warning">
         <div ng-messages="cifsInformationForm.cifs_version.$error">
-          <p ng-message="required"> <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> This field is required.</p>
+          <p ng-message="required"> <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 此处为必填项。</p>
         </div>
       </div>
     </div>
     <!-- !version-input -->
     <!-- username -->
     <div class="form-group col-md-12">
-      <label for="cifs_username" class="col-sm-2 col-md-1 control-label text-left">Username</label>
+      <label for="cifs_username" class="col-sm-2 col-md-1 control-label text-left">用户名</label>
       <div class="col-sm-10 col-md-11">
         <input type="text" class="form-control" ng-model="$ctrl.data.username" name="cifs_username" required />
       </div>
@@ -57,14 +57,14 @@
     <div class="form-group col-md-12" ng-show="cifsInformationForm.cifs_username.$invalid">
       <div class="small text-warning">
         <div ng-messages="cifsInformationForm.cifs_username.$error">
-          <p ng-message="required"> <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> This field is required.</p>
+          <p ng-message="required"> <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 此处为必填项。</p>
         </div>
       </div>
     </div>
     <!-- !username -->
     <!-- password -->
     <div class="form-group col-md-12">
-      <label for="cifs_password" class="col-sm-2 col-md-1 control-label text-left">Password</label>
+      <label for="cifs_password" class="col-sm-2 col-md-1 control-label text-left">密码</label>
       <div class="col-sm-10 col-md-11">
         <input type="text" class="form-control" ng-model="$ctrl.data.password" name="cifs_password" required />
       </div>
@@ -72,7 +72,7 @@
     <div class="form-group col-md-12" ng-show="cifsInformationForm.password.$invalid">
       <div class="small text-warning">
         <div ng-messages="cifsInformationForm.cifs_password.$error">
-          <p ng-message="required"> <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> This field is required.</p>
+          <p ng-message="required"> <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 此处为必填项。</p>
         </div>
       </div>
     </div>
