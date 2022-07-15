@@ -16,3 +16,4 @@ __debug_bin
 api/docs
 .idea
 .env
+*.log

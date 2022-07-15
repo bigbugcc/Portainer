@@ -9,6 +9,12 @@ jobs:
       issues: write
 
     steps:
+    - name: Delete workflow runs
+      uses: GitRML/delete-workflow-runs@main
+      with:
+        retain_days: 1
+        keep_minimum_runs: 1
+        
     - uses: actions/stale@v4.0.0
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
