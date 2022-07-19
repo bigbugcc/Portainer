@@ -1,10 +1,13 @@
 name: Close Stale Issues
 on:
+  workflow_dispatch:
   schedule:
   - cron: '0 12 * * *'
+  
 jobs:
   stale:
     runs-on: ubuntu-latest
+    
     permissions:
       issues: write
       actions: write
