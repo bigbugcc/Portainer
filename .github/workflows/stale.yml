@@ -5,6 +5,9 @@ on:
 jobs:
   stale:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      actions: write
 
     steps:
     - name: Delete workflow runs
