@@ -1,6 +1,6 @@
-<rd-header>
-  <rd-header-title title-text="Dashboard"></rd-header-title>
-  <rd-header-content>Environment summary</rd-header-content>
+﻿<rd-header>
+  <rd-header-title title-text="控制面板"></rd-header-title>
+  <rd-header-content>环境总览</rd-header-content>
 </rd-header>
 
 <div class="row" ng-if="applicationState.endpoint.mode.agentProxy && applicationState.endpoint.mode.provider === 'DOCKER_SWARM_MODE'">
@@ -15,31 +15,31 @@
     !applicationState.endpoint.mode.agentProxy &&
     applicationState.endpoint.mode.provider === 'DOCKER_SWARM_MODE'
   "
-  title-text="Information"
+  title-text="信息"
   dismiss-action="dismissInformationPanel('docker-dashboard-info-01')"
 >
   <span class="small">
-    <p class="text-muted" ng-if="applicationState.endpoint.mode.role === 'MANAGER'">
-      <i class="fa fa-exclamation-circle orange-icon" aria-hidden="true" style="margin-right: 2px"></i>
-      Portainer is connected to a node that is part of a Swarm cluster. Some resources located on other nodes in the cluster might not be available for management, have a look at
-      <a href="http://portainer.readthedocs.io/en/stable/agent.html" target="_blank">our agent setup</a> for more details.
-    </p>
-    <p class="text-muted" ng-if="applicationState.endpoint.mode.role === 'WORKER'">
-      <i class="fa fa-exclamation-circle orange-icon" aria-hidden="true" style="margin-right: 2px"></i>
-      Portainer is connected to a worker node. Swarm management features will not be available.
-    </p>
+      <p class="text-muted" ng-if="applicationState.endpoint.mode.role === 'MANAGER'">
+          <i class="fa fa-exclamation-circle orange-icon" aria-hidden="true" style="margin-right: 2px"></i>
+          Portainer 连接到一个节点，该节点是 Swarm 集群的一部分。 位于集群中其他节点上的某些资源可能无法用于管理，请查看
+          <a href="http://portainer.readthedocs.io/en/stable/agent.html" target="_blank">我们的代理设置</a>了解更多详情。
+      </p>
+      <p class="text-muted" ng-if="applicationState.endpoint.mode.role === 'WORKER'">
+          <i class="fa fa-exclamation-circle orange-icon" aria-hidden="true" style="margin-right: 2px"></i>
+          Portainer 连接到一个工作节点。 群管理功能将不可用。
+      </p>
   </span>
 </information-panel>
 
 <div class="row" ng-if="(!applicationState.endpoint.mode.agentProxy || applicationState.endpoint.mode.provider !== 'DOCKER_SWARM_MODE') && info && endpoint">
   <div class="col-sm-12">
     <rd-widget>
-      <rd-widget-header icon="fa-tachometer-alt" title-text="Environment info"></rd-widget-header>
+      <rd-widget-header icon="fa-tachometer-alt" title-text="环境信息"></rd-widget-header>
       <rd-widget-body classes="no-padding">
         <table class="table">
           <tbody>
             <tr>
-              <td>Environment</td>
+              <td>信息</td>
               <td>
                 {{ endpoint.Name }}
                 <span class="small text-muted space-left">
@@ -47,7 +47,7 @@
                 </span>
                 <span class="small text-muted">
                   - {{ info.Swarm && info.Swarm.NodeID !== '' ? 'Swarm' : 'Standalone' }} {{ info.ServerVersion }}
-                  <span ng-if="endpoint.Type === 2">+ <i class="fa fa-bolt" aria-hidden="true"></i> Agent</span></span
+                  <span ng-if="endpoint.Type === 2">+ <i class="fa fa-bolt" aria-hidden="true"></i> 代理</span></span
                 >
               </td>
             </tr>
@@ -62,7 +62,7 @@
             <tr ng-if="applicationState.endpoint.mode.provider === 'DOCKER_SWARM_MODE' && applicationState.endpoint.mode.role === 'MANAGER'">
               <td colspan="2">
                 <div class="btn-group" role="group" aria-label="...">
-                  <a ui-sref="docker.swarm.visualizer"><i class="fa fa-object-group space-right" aria-hidden="true"></i>Go to cluster visualizer</a>
+                    <a ui-sref="docker.swarm.visualizer"><i class="fa fa-object-group space-right" aria-hidden="true"></i>转到集群可视化工具</a>
                 </div>
               </td>
             </tr>
@@ -108,12 +108,12 @@
             <i class="fa fa-cubes"></i>
           </div>
           <div class="pull-right" style="padding-left: 5px">
-            <div><i class="fa fa-power-off space-right green-icon"></i>{{ containers | runningcontainers }} running</div>
-            <div><i class="fa fa-power-off space-right red-icon"></i>{{ containers | stoppedcontainers }} stopped</div>
+            <div><i class="fa fa-power-off space-right green-icon"></i>{{ containers | runningcontainers }} 运行中</div>
+            <div><i class="fa fa-power-off space-right red-icon"></i>{{ containers | stoppedcontainers }} 已停止</div>
           </div>
           <div class="pull-right" style="padding-right: 5px">
-            <div><i class="fa fa-heartbeat space-right green-icon"></i>{{ containers | healthycontainers }} healthy</div>
-            <div><i class="fa fa-heartbeat space-right orange-icon"></i>{{ containers | unhealthycontainers }} unhealthy</div>
+            <div><i class="fa fa-heartbeat space-right green-icon"></i>{{ containers | healthycontainers }} 健康</div>
+            <div><i class="fa fa-heartbeat space-right orange-icon"></i>{{ containers | unhealthycontainers }} 不健康</div>
           </div>
           <div class="title">{{ containers.length }}</div>
           <div class="comment">{{ containers.length === 1 ? 'Container' : 'Containers' }}</div>
