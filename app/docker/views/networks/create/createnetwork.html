@@ -1,6 +1,6 @@
-<rd-header>
+﻿<rd-header>
   <rd-header-title title-text="Create network"></rd-header-title>
-  <rd-header-content> <a ui-sref="docker.networks">Networks</a> &gt; Add network </rd-header-content>
+  <rd-header-content> <a ui-sref="docker.networks">网络</a> &gt; 添加网络 </rd-header-content>
 </rd-header>
 
 <div class="row">
@@ -10,19 +10,19 @@
         <form class="form-horizontal" name="networkCreationForm">
           <!-- name-input -->
           <div class="form-group">
-            <label for="network_name" class="col-sm-2 col-lg-1 control-label text-left">Name</label>
+            <label for="network_name" class="col-sm-2 col-lg-1 control-label text-left">名称</label>
             <div class="col-sm-10 col-lg-11">
               <input type="text" class="form-control" ng-model="config.Name" id="network_name" placeholder="e.g. myNetwork" />
             </div>
           </div>
           <!-- !name-input -->
-          <div class="col-sm-12 form-section-title"> Driver configuration </div>
+          <div class="col-sm-12 form-section-title"> 驱动程序配置 </div>
           <!-- driver-input -->
           <div class="form-group">
-            <label for="network_driver" class="col-sm-2 col-lg-1 control-label text-left">Driver</label>
+            <label for="network_driver" class="col-sm-2 col-lg-1 control-label text-left">驱动程序</label>
             <div class="col-sm-10 col-lg-11">
               <select class="form-control" ng-options="driver for driver in availableNetworkDrivers" ng-model="config.Driver" ng-if="availableNetworkDrivers.length > 0">
-                <option disabled hidden value="">Select a driver</option>
+                  <option disabled hidden value="">选择驱动程序</option>
               </select>
               <input type="text" class="form-control" ng-model="config.Driver" id="network_driver" placeholder="e.g. driverName" ng-if="availableNetworkDrivers.length === 0" />
             </div>
@@ -32,25 +32,25 @@
           <div class="form-group">
             <div class="col-sm-12" style="margin-top: 5px">
               <label class="control-label text-left">
-                Driver options
+                驱动程序选项
                 <portainer-tooltip
                   position="bottom"
-                  message="Driver options are specific to the selected driver. Please refer to the selected driver documentation."
+                  message="驱动程序选项特定于所选驱动程序。请参阅选定的驱动程序文档。"
                 ></portainer-tooltip>
               </label>
               <span class="label label-default interactive" style="margin-left: 10px" ng-click="addDriverOption()">
-                <i class="fa fa-plus-circle" aria-hidden="true"></i> add driver option
+                <i class="fa fa-plus-circle" aria-hidden="true"></i> 添加驱动程序选项
               </span>
             </div>
             <!-- driver-options-input-list -->
             <div class="col-sm-12 form-inline" style="margin-top: 10px">
               <div ng-repeat="option in formValues.DriverOptions" style="margin-top: 2px">
                 <div class="input-group col-sm-5 input-group-sm">
-                  <span class="input-group-addon">name</span>
+                  <span class="input-group-addon">名称</span>
                   <input type="text" class="form-control" ng-model="option.name" placeholder="e.g. com.docker.network.bridge.enable_icc" />
                 </div>
                 <div class="input-group col-sm-5 input-group-sm">
-                  <span class="input-group-addon">value</span>
+                  <span class="input-group-addon">值</span>
                   <input type="text" class="form-control" ng-model="option.value" placeholder="e.g. true" />
                 </div>
                 <button class="btn btn-sm btn-danger" type="button" ng-click="removeDriverOption($index)">
@@ -65,14 +65,14 @@
           <network-macvlan-form ng-show="config.Driver === 'macvlan'" data="formValues.Macvlan" application-state="applicationState"></network-macvlan-form>
           <!-- !macvlan-management -->
           <div ng-hide="config.Driver === 'macvlan' && formValues.Macvlan.Scope === 'swarm'">
-            <div class="col-sm-12 form-section-title"> IPV4 Network configuration </div>
+              <div class="col-sm-12 form-section-title"> IPV4 网络配置</div>
             <!-- subnet-gateway-inputs -->
             <div class="form-group">
-              <label for="ipv4_network_subnet" class="col-sm-2 col-lg-1 control-label text-left">Subnet</label>
+                <label for="ipv4_network_subnet" class="col-sm-2 col-lg-1 control-label text-left">子网</label>
               <div class="col-sm-4 col-lg-5">
                 <input type="text" class="form-control" ng-model="formValues.IPV4.Subnet" id="ipv4_network_subnet" placeholder="e.g. 172.20.0.0/16" />
               </div>
-              <label for="ipv4_network_gateway" class="col-sm-2 col-lg-1 control-label text-left">Gateway</label>
+              <label for="ipv4_network_gateway" class="col-sm-2 col-lg-1 control-label text-left">网关</label>
               <div class="col-sm-4 col-lg-5">
                 <input type="text" class="form-control" ng-model="formValues.IPV4.Gateway" id="ipv4_network_gateway" placeholder="e.g. 172.20.10.11" />
               </div>
@@ -80,13 +80,13 @@
             <!-- !subnet-gateway-inputs -->
             <!-- iprange-auxaddr-inputs -->
             <div class="form-group">
-              <label for="ipv4_network_iprange" class="col-sm-2 col-lg-1 control-label text-left">IP range</label>
+                <label for="ipv4_network_iprange" class="col-sm-2 col-lg-1 control-label text-left">IP 范围</label>
               <div class="col-sm-4 col-lg-5">
                 <input type="text" class="form-control" ng-model="formValues.IPV4.IPRange" id="ipv4_network_iprange" placeholder="e.g. 172.20.10.128/25" />
               </div>
             </div>
             <div ng-repeat="auxAddress in formValues.IPV4.AuxiliaryAddresses track by $index" class="form-group">
-              <label for="ipv4_network_auxaddr_{{ $index }}" class="col-sm-2 col-lg-1 control-label text-left">Exclude IP</label>
+                <label for="ipv4_network_auxaddr_{{ $index }}" class="col-sm-2 col-lg-1 control-label text-left">排除 IP</label>
               <div class="col-sm-4 col-lg-5">
                 <input
                   type="text"
@@ -101,25 +101,24 @@
                 <i class="fa fa-trash" aria-hidden="true"></i>
               </button>
               <div class="col-sm-12 small text-warning" ng-show="state.IPV4AuxiliaryAddressesError[$index]">
-                <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Exclude ip cannot be the same as gateway.</p>
+                  <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 排除ip不能与网关相同。</p>
               </div>
             </div>
             <!-- !iprange-auxaddr-inputs -->
             <div class="form-group">
-              <span class="label label-default interactive" style="margin-left: 10px" ng-click="addIPV4AuxAddress()">
-                <i class="fa fa-plus-circle" aria-hidden="true"></i> add excluded IP
-              </span>
-            </div>
+                <span class="label label-default interactive" style="margin-left: 10px" ng-click="addIPV4AuxAddress()">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i> 添加排除的 IP
+</div>
           </div>
           <div ng-show="config.Driver === 'bridge' || (config.Driver === 'macvlan' && formValues.Macvlan.Scope !== 'swarm')">
-            <div class="col-sm-12 form-section-title"> IPV6 Network configuration </div>
+              <div class="col-sm-12 form-section-title">IPV6 网络配置 </div>
             <!-- subnet-gateway-inputs -->
             <div class="form-group">
-              <label for="ipv6_network_subnet" class="col-sm-2 col-lg-1 control-label text-left">Subnet</label>
+              <label for="ipv6_network_subnet" class="col-sm-2 col-lg-1 control-label text-left">子网</label>
               <div class="col-sm-4 col-lg-5">
                 <input type="text" class="form-control" ng-model="formValues.IPV6.Subnet" id="ipv6_network_subnet" placeholder="e.g. 2001:db8::/48" />
               </div>
-              <label for="ipv6_network_gateway" class="col-sm-2 col-lg-1 control-label text-left">Gateway</label>
+              <label for="ipv6_network_gateway" class="col-sm-2 col-lg-1 control-label text-left">网关</label>
               <div class="col-sm-4 col-lg-5">
                 <input type="text" class="form-control" ng-model="formValues.IPV6.Gateway" id="ipv6_network_gateway" placeholder="e.g. 2001:db8::1" />
               </div>
@@ -127,13 +126,13 @@
             <!-- !subnet-gateway-inputs -->
             <!-- iprange-auxaddr-inputs -->
             <div class="form-group">
-              <label for="ipv6_network_iprange" class="col-sm-2 col-lg-1 control-label text-left">IP range</label>
+              <label for="ipv6_network_iprange" class="col-sm-2 col-lg-1 control-label text-left">IP 范围</label>
               <div class="col-sm-4 col-lg-5">
                 <input type="text" class="form-control" ng-model="formValues.IPV6.IPRange" id="ipv6_network_iprange" placeholder="e.g. 2001:db8::/64" />
               </div>
             </div>
             <div ng-repeat="auxAddress in formValues.IPV6.AuxiliaryAddresses track by $index" class="form-group">
-              <label for="ipv6_network_auxaddr_{{ $index }}" class="col-sm-2 col-lg-1 control-label text-left">Exclude IP</label>
+                <label for="ipv6_network_auxaddr_{{ $index }}" class="col-sm-2 col-lg-1 control-label text-left">排除 IP</label>
               <div class="col-sm-4 col-lg-5">
                 <input
                   type="text"
@@ -148,32 +147,31 @@
                 <i class="fa fa-trash" aria-hidden="true"></i>
               </button>
               <div class="col-sm-12 small text-warning" ng-show="state.IPV6AuxiliaryAddressesError[$index]">
-                <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Exclude ip cannot be the same as gateway.</p>
+                <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 排除ip不能与网关相同。</p>
               </div>
             </div>
             <!-- !iprange-auxaddr-inputs -->
             <div class="form-group">
               <span class="label label-default interactive" style="margin-left: 10px" ng-click="addIPV6AuxAddress()">
-                <i class="fa fa-plus-circle" aria-hidden="true"></i> add excluded IP
-              </span>
+                <i class="fa fa-plus-circle" aria-hidden="true"></i> 添加排除的 IP
             </div>
           </div>
-          <div class="col-sm-12 form-section-title"> Advanced configuration </div>
+          <div class="col-sm-12 form-section-title">高级配置 </div>
           <!-- labels -->
           <div class="form-group">
             <div class="col-sm-12" style="margin-top: 5px">
-              <label class="control-label text-left">Labels</label>
-              <span class="label label-default interactive" style="margin-left: 10px" ng-click="addLabel()"> <i class="fa fa-plus-circle" aria-hidden="true"></i> add label </span>
+                <label class="control-label text-left">标签</label>
+              <span class="label label-default interactive" style="margin-left: 10px" ng-click="addLabel()"> <i class="fa fa-plus-circle" aria-hidden="true"></i> 添加标签 </span>
             </div>
             <!-- labels-input-list -->
             <div class="col-sm-12 form-inline" style="margin-top: 10px">
               <div ng-repeat="label in formValues.Labels" style="margin-top: 2px">
                 <div class="input-group col-sm-5 input-group-sm">
-                  <span class="input-group-addon">name</span>
+                  <span class="input-group-addon">名称</span>
                   <input type="text" class="form-control" ng-model="label.key" placeholder="e.g. com.example.foo" />
                 </div>
                 <div class="input-group col-sm-5 input-group-sm">
-                  <span class="input-group-addon">value</span>
+                  <span class="input-group-addon">值</span>
                   <input type="text" class="form-control" ng-model="label.value" placeholder="e.g. bar" />
                 </div>
                 <button class="btn btn-sm btn-danger" type="button" ng-click="removeLabel($index)">
@@ -188,8 +186,8 @@
           <div class="form-group" ng-hide="config.Driver === 'macvlan' && formValues.Macvlan.Scope === 'local'">
             <div class="col-sm-12">
               <label for="ownership" class="control-label text-left">
-                Isolated network
-                <portainer-tooltip position="bottom" message="An isolated network has no inbound or outbound communications."></portainer-tooltip>
+                隔离网络
+                <portainer-tooltip position="bottom" message="独立的网络没有入站或出站通信。"></portainer-tooltip>
               </label>
               <label name="ownership" class="switch" style="margin-left: 20px">
                 <input type="checkbox" ng-model="config.Internal" />
@@ -201,7 +199,7 @@
           <!-- attachable -->
           <div class="form-group" ng-hide="config.Driver === 'macvlan' && formValues.Macvlan.Scope === 'local'">
             <div class="col-sm-12">
-              <label for="attachable" class="control-label text-left"> Enable manual container attachment </label>
+                <label for="attachable" class="control-label text-left">启用手动容器附件 </label>
               <label name="attachable" class="switch" style="margin-left: 20px">
                 <input type="checkbox" ng-model="config.Attachable" />
                 <i></i>
@@ -217,7 +215,7 @@
               config.Driver !== 'macvlan'
             "
           >
-            <div class="col-sm-12 form-section-title"> Deployment </div>
+            <div class="col-sm-12 form-section-title"> 部署 </div>
             <!-- node-selection -->
             <node-selector model="formValues.NodeName"> </node-selector>
             <!-- !node-selection -->
@@ -226,7 +224,7 @@
           <por-access-control-form form-data="formValues.AccessControlData"></por-access-control-form>
           <!-- !access-control -->
           <!-- actions -->
-          <div class="col-sm-12 form-section-title"> Actions </div>
+          <div class="col-sm-12 form-section-title"> 操作 </div>
           <div class="form-group">
             <div class="col-sm-12">
               <button
@@ -236,8 +234,8 @@
                 ng-click="create()"
                 button-spinner="state.actionInProgress"
               >
-                <span ng-hide="state.actionInProgress">Create the network</span>
-                <span ng-show="state.actionInProgress">Creating network...</span>
+                  <span ng-hide="state.actionInProgress">创建网络</span>
+                <span ng-show="state.actionInProgress">网络正在创建中...</span>
               </button>
               <i id="createResourceSpinner" class="fa fa-cog fa-spin" style="margin-left: 5px; display: none"></i>
               <span class="text-danger" ng-if="state.formValidationError" style="margin-left: 5px">{{ state.formValidationError }}</span>
