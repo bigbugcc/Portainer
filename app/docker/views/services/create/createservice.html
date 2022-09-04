@@ -43,7 +43,7 @@
           </div>
           <div class="form-group form-inline" ng-if="formValues.Mode === 'replicated'">
             <div class="col-sm-12">
-              <label class="control-label text-left"> Replicas </label>
+              <label class="control-label text-left"> 副本 </label>
               <input type="number" class="form-control" ng-model="formValues.Replicas" id="replicas" placeholder="e.g. 3" style="margin-left: 20px" />
             </div>
           </div>
@@ -144,12 +144,12 @@
       <rd-widget-body>
         <ul class="nav nav-pills nav-justified">
           <li class="active interactive"><a data-target="#command" data-toggle="tab">命令行和日志记录</a></li>
-          <li class="interactive"><a data-target="#volumes" data-toggle="tab">文件集</a></li>
+          <li class="interactive"><a data-target="#volumes" data-toggle="tab">卷</a></li>
           <li class="interactive"><a data-target="#network" data-toggle="tab">网络</a></li>
           <li class="interactive"><a data-target="#env" data-toggle="tab">环境</a></li>
           <li class="interactive"><a data-target="#labels" data-toggle="tab">标签</a></li>
           <li class="interactive"><a data-target="#update-config" data-toggle="tab">更新配置和重启</a></li>
-          <li class="interactive" ng-if="applicationState.endpoint.apiVersion >= 1.25"><a data-target="#secrets" data-toggle="tab">Secrets</a></li>
+          <li class="interactive" ng-if="applicationState.endpoint.apiVersion >= 1.25"><a data-target="#secrets" data-toggle="tab">密钥</a></li>
           <li class="interactive"><a data-target="#configs" data-toggle="tab" ng-if="applicationState.endpoint.apiVersion >= 1.3">配置</a></li>
           <li class="interactive"><a data-target="#resources-placement" data-toggle="tab" ng-click="refreshSlider()">资源和位置</a></li>
         </ul>
@@ -193,7 +193,7 @@
                 <label for="log-driver" class="col-sm-2 col-lg-1 control-label text-left">驱动程序</label>
                 <div class="col-sm-4">
                   <select class="form-control" ng-model="formValues.LogDriverName" id="log-driver">
-                    <option selected value="">Default logging driver</option>
+                      <option selected value="">默认日志记录驱动程序</option>
                     <option ng-repeat="driver in availableLoggingDrivers" ng-value="driver">{{ driver }}</option>
                     <option value="none">无</option>
                   </select>
@@ -253,9 +253,9 @@
               <!-- volumes -->
               <div class="form-group">
                 <div class="col-sm-12" style="margin-top: 5px">
-                  <label class="control-label text-left">文件集映射</label>
+                  <label class="control-label text-left">卷映射</label>
                   <span class="label label-default interactive" style="margin-left: 10px" ng-click="addVolume()">
-                      <i class="fa fa-plus-circle" aria-hidden="true"></i> 映射附加文件集
+                      <i class="fa fa-plus-circle" aria-hidden="true"></i> 映射附加卷
                   </span>
                 </div>
                 <!-- volumes-input-list -->
@@ -276,7 +276,7 @@
                         <!-- volume-type -->
                         <div class="input-group col-sm-5" style="margin-left: 5px; vertical-align: top">
                           <div class="btn-group btn-group-sm" ng-if="allowBindMounts">
-                            <label class="btn btn-primary" ng-model="volume.Type" uib-btn-radio="'volume'" ng-click="volume.Source = null">文件集</label>
+                            <label class="btn btn-primary" ng-model="volume.Type" uib-btn-radio="'volume'" ng-click="volume.Source = null">卷</label>
                             <label class="btn btn-primary" ng-model="volume.Type" uib-btn-radio="'bind'" ng-click="volume.Source = null">绑定/label>
                           </div>
                           <button class="btn btn-sm btn-danger" type="button" ng-click="removeVolume($index)">
@@ -294,13 +294,13 @@
                         <!-- volume -->
                         <div class="col-sm-6 input-group" ng-if="volume.Type === 'volume'" style="float: none; padding: 0">
                           <div class="input-group input-group-sm w-full">
-                            <span class="input-group-addon">文件集</span>
+                            <span class="input-group-addon">卷</span>
                             <select
                               class="form-control"
                               ng-model="volume.Source"
                               ng-options="vol as ((vol.Id|truncate:30) + ' - ' + (vol.Driver|truncate:30)) for vol in availableVolumes"
                             >
-                                <option selected disabled value="">选择一个文件集</option>
+                                <option selected disabled value="">选择一个卷</option>
                             </select>
                           </div>
                           <div class="small text-warning" ng-show="!volume.Source"> <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Source是必须的。 </div>
@@ -342,7 +342,7 @@
                 <label for="container_network" class="col-sm-2 col-lg-1 control-label text-left">网络</label>
                 <div class="col-sm-9">
                   <select class="form-control" ng-model="formValues.Network">
-                    <option selected disabled hidden value="">S选择网络</option>
+                    <option selected disabled hidden value="">选择网络</option>
                     <option ng-repeat="net in availableNetworks | orderBy: 'Name'" ng-value="net.Name">{{ net.Name }}</option>
                   </select>
                 </div>
