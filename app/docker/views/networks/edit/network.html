@@ -1,19 +1,19 @@
-<rd-header>
-  <rd-header-title title-text="Network details"></rd-header-title>
+﻿<rd-header>
+  <rd-header-title title-text="网络详情"></rd-header-title>
   <rd-header-content>
-    <a ui-sref="docker.networks">Networks</a> &gt; <a ui-sref="docker.networks.network({id: network.Id})">{{ network.Name }}</a>
+    <a ui-sref="docker.networks">网络</a> &gt; <a ui-sref="docker.networks.network({id: network.Id})">{{ network.Name }}</a>
   </rd-header-content>
 </rd-header>
 
 <div class="row">
   <div class="col-lg-12 col-md-12 col-xs-12">
     <rd-widget>
-      <rd-widget-header icon="fa-sitemap" title-text="Network details"></rd-widget-header>
+      <rd-widget-header icon="fa-sitemap" title-text="网络详情"></rd-widget-header>
       <rd-widget-body classes="no-padding">
         <table class="table">
           <tbody>
             <tr>
-              <td>Name</td>
+              <td>名称</td>
               <td>{{ network.Name }}</td>
             </tr>
             <tr>
@@ -21,7 +21,7 @@
               <td>
                 {{ network.Id }}
                 <button authorization="DockerNetworkDelete" ng-if="allowRemove()" class="btn btn-xs btn-danger" ng-click="removeNetwork(network.Id)"
-                  ><i class="fa fa-trash-alt space-right" aria-hidden="true"></i>Delete this network</button
+                  ><i class="fa fa-trash-alt space-right" aria-hidden="true"></i>删除此网络</button
                 >
               </td>
             </tr>
@@ -83,7 +83,7 @@
 <div class="row" ng-if="!(network.Options | emptyobject)">
   <div class="col-lg-12 col-md-12 col-xs-12">
     <rd-widget>
-      <rd-widget-header icon="fa-cogs" title-text="Network options"></rd-widget-header>
+      <rd-widget-header icon="fa-cogs" title-text="网络选项"></rd-widget-header>
       <rd-widget-body classes="no-padding">
         <table class="table">
           <tbody>
@@ -101,7 +101,7 @@
 <div class="row" ng-if="containersInNetwork.length > 0">
   <div class="col-lg-12 col-md-12 col-xs-12">
     <rd-widget>
-      <rd-widget-header icon="fa-server" title-text="Containers in network"></rd-widget-header>
+      <rd-widget-header icon="fa-server" title-text="网络中的容器"></rd-widget-header>
       <rd-widget-body classes="no-padding">
         <table class="table">
           <thead>
@@ -121,7 +121,7 @@
               <td>{{ container.MacAddress || '-' }}</td>
               <td authorization="DockerNetworkDisconnect">
                 <button type="button" class="btn btn-xs btn-danger" ng-click="containerLeaveNetwork(network, container)"
-                  ><i class="fa fa-trash-alt space-right" aria-hidden="true"></i>Leave Network</button
+                  ><i class="fa fa-trash-alt space-right" aria-hidden="true"></i>离开网络</button
                 >
               </td>
             </tr>
